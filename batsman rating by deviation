@@ -1,0 +1,93 @@
+#include<stdio.h>
+
+#include<math.h>
+
+struct batsman{
+
+   char name[50];
+
+   int score[5];
+};
+
+void f_better()
+
+{
+    int  n, m;
+
+    printf("Number of player :");
+
+    scanf("%d", &n);
+
+    printf("Number of innings they have played :");
+
+    scanf("%d", &m);
+
+    struct batsman player[n];
+
+    int i, j, sum, min_index;
+
+    float avg, total;
+
+    double min = 100000.0;
+
+    for(i = 0; i < n; i++){
+
+        scanf("%s", &player[i].name);                      
+        sum = 0;
+
+        for(j = 0; j < m; j++){
+
+            scanf("%d", &player[i].score[j]);
+
+            sum = sum + player[i].score[j];
+
+        }
+
+        avg = sum / m ;
+
+        total = 0.0;
+
+
+
+
+        for(j = 0; j < m; j++){
+
+            total = total + pow((avg - player[i].score[j]) ,  2);
+
+            
+        }
+
+        double dev = (sqrt(total)) / n;
+
+
+
+
+
+        if(min > dev){
+
+            min = dev;
+
+            min_index = i;
+        }
+
+        
+
+         printf("\n%s's deviation is %0.3f\n", player[i].name, dev);
+
+
+    }
+
+
+    printf("\n%s is the best player by deviation ", player[min_index].name);
+
+}
+
+int main()
+
+{
+
+    f_better();
+
+    return 0;
+
+}
